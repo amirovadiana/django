@@ -39,11 +39,14 @@ def workdir_view(request):
     pages = {}
     for filename in os.listdir(directory):
         if os.path.isfile(filename):
-            pass
+            pages[filename] = ''
         else:
             val = []
             val += os.listdir(filename)
             pages[filename] = val
+
+    del pages['.idea']
+    del pages['.venv']
 
     context = {
         'pages': pages
